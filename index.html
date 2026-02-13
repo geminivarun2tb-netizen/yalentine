@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Yamini 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', 'SF Pro Display', 'Mont Heavy', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Floating hearts background */
+        .heart-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            animation: floatUp 12s infinite;
+            opacity: 0;
+            filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.5));
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(110vh) translateX(0) rotate(0deg) scale(0.5);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 0.6;
+                transform: translateY(50vh) translateX(var(--drift)) rotate(180deg) scale(1);
+            }
+            90% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(calc(var(--drift) * 1.5)) rotate(360deg) scale(0.8);
+                opacity: 0;
+            }
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: white;
+            border-radius: 50%;
+            animation: sparkleFloat 8s infinite;
+            opacity: 0;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes sparkleFloat {
+            0% {
+                transform: translateY(110vh) scale(0);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 60px 80px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 
+                        0 0 100px rgba(255, 105, 180, 0.2);
+            text-align: center;
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+            animation: slideIn 0.6s ease-out, containerGlow 4s ease-in-out infinite;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes containerGlow {
+            0%, 100% {
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 
+                            0 0 80px rgba(255, 105, 180, 0.2);
+            }
+            50% {
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 
+                            0 0 120px rgba(255, 105, 180, 0.4);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #764ba2;
+            margin-bottom: 20px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .question {
+            font-size: 1.8em;
+            color: #333;
+            margin: 30px 0;
+            font-weight: 500;
+        }
+
+        .reaction-text {
+            font-size: 1.6em;
+            color: #f5576c;
+            margin: 20px 0;
+            font-weight: 600;
+            min-height: 40px;
+            animation: fadeInBounce 0.5s ease-out;
+        }
+
+        @keyframes fadeInBounce {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            60% {
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        .buttons-container.no-moving {
+            justify-content: center;
+        }
+
+        button {
+            font-size: 1.3em;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            min-width: 180px;
+            position: relative;
+            z-index: 10;
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
+        }
+
+        #noBtn {
+            background: linear-gradient(135deg, #a8a8a8 0%, #666 100%);
+            color: white;
+        }
+
+        #noBtn.moving {
+            position: fixed;
+            z-index: 10000;
+        }
+
+        /* Celebration page */
+        .celebration {
+            display: none;
+            text-align: center;
+            animation: celebrationAppear 0.8s ease-out;
+        }
+
+        @keyframes celebrationAppear {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .celebration h1 {
+            font-size: 3.5em;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+        }
+
+        .celebration p {
+            font-size: 1.5em;
+            color: #555;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .love-message {
+            font-size: 1.8em;
+            color: #764ba2;
+            margin: 30px 0;
+            font-weight: 600;
+        }
+
+        /* Confetti */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #f5576c;
+            position: absolute;
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Celebrate Button */
+        .celebrate-button {
+            margin-top: 40px;
+            font-size: 1.5em;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            background: linear-gradient(45deg, #f093fb, #f5576c, #4facfe, #43e97b);
+            background-size: 300% 300%;
+            color: white;
+            box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
+            transition: all 0.3s ease;
+            animation: gradientShift 3s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .celebrate-button:hover {
+            transform: scale(1.15) rotate(2deg);
+            box-shadow: 0 12px 35px rgba(245, 87, 108, 0.6);
+            animation: gradientShift 1.5s ease infinite, bounce 0.5s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: scale(1.15) translateY(0) rotate(2deg);
+            }
+            50% {
+                transform: scale(1.15) translateY(-10px) rotate(-2deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 30px;
+                margin: 20px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .question {
+                font-size: 1.4em;
+            }
+
+            button {
+                font-size: 1.1em;
+                padding: 15px 35px;
+            }
+
+            .celebration h1 {
+                font-size: 2.5em;
+            }
+
+            .celebration p {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div class="heart-bg" id="heartBg"></div>
+
+    <div class="container">
+        <!-- Question Page -->
+        <div id="questionPage">
+            <h1>💕 Hey Yamini! 💕</h1>
+            <p class="question">Will you be my Valentine?</p>
+            <p id="reactionText" class="reaction-text"></p>
+            <div class="buttons-container">
+                <button id="yesBtn" onclick="sayYes()">Yes! 💖</button>
+                <button id="noBtn">No 😢</button>
+            </div>
+        </div>
+
+        <!-- Celebration Page -->
+        <div class="celebration" id="celebrationPage">
+            <h1>🎉 Yay! 🎉</h1>
+            <p class="love-message">I knew you'd say yes! 💕</p>
+            <p>You just made our first Valentine's Day the best one ever!!</p>
+            <p>I love you so much, and this is a very small gift from my side.. 🥰</p>
+            <p style="margin-top: 40px; font-size: 1.3em; color: #764ba2;">
+                ✨ You mean the world to me ✨
+            </p>
+            <button id="celebrateBtn" class="celebrate-button" onclick="celebrate()">Come, Let's celebrate 🎉</button>
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts in background (from bottom to top)
+        function createFloatingHearts() {
+            const heartBg = document.getElementById('heartBg');
+            const heartEmojis = ['❤️', '💕', '💖', '💗', '💝', '💘', '💓', '💞'];
+            
+            // Create initial hearts
+            for (let i = 0; i < 25; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.setProperty('--drift', (Math.random() * 100 - 50) + 'px');
+                heart.style.animationDuration = (Math.random() * 4 + 5) + 's';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heartBg.appendChild(heart);
+            }
+
+            // Create sparkles
+            for (let i = 0; i < 30; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                sparkle.style.animationDelay = Math.random() * 4 + 's';
+                heartBg.appendChild(sparkle);
+            }
+        }
+
+        createFloatingHearts();
+
+        // Continuously add new hearts
+        setInterval(() => {
+            const heartBg = document.getElementById('heartBg');
+            const heartEmojis = ['❤️', '💕', '💖', '💗', '💝', '💘', '💓', '💞'];
+            
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.setProperty('--drift', (Math.random() * 100 - 50) + 'px');
+            heart.style.animationDuration = (Math.random() * 4 + 5) + 's';
+            heartBg.appendChild(heart);
+            
+            // Remove after animation completes
+            setTimeout(() => heart.remove(), 10000);
+        }, 800);
+
+        // The cheeky No button logic - moves all over the screen on click!
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const reactionText = document.getElementById('reactionText');
+        let clickCount = 0;
+        let isMoving = false;
+        let yesScale = 1; // Track the scale of Yes button
+        let moveToRight = true; // Toggle between right and left
+        
+        // Reaction messages for each click
+        const reactions = [
+            "What? 😱",
+            "Seriously?? 🤨",
+            "You have no option now 😈"
+        ];
+        
+        // Yes button text progression
+        const yesButtonTexts = [
+            "Yes! 💖",           // Initial
+            "Come on... 💕",     // 1st No click
+            "Please? 🥺",        // 2nd No click
+            "You know you want to... 💗", // 3rd No click
+            "Just say YES! 💝",  // 4th No click
+            "I know you love me! 💞", // 5th No click
+            "Don't be shy now... 💓", // 6th No click
+            "YES is the answer! ❤️", // 7th No click
+            "Come onnn please! 🥰", // 8th No click
+            "You're making me wait! 💘", // 9th No click
+            "JUST CLICK ME! 💖✨" // 10th+ No click
+        ];
+        
+        // Function to move button to random position within the white container
+        function moveButton() {
+            if (!isMoving) {
+                isMoving = true;
+                noBtn.classList.add('moving');
+            }
+            
+            // Get the white container bounds
+            const container = document.querySelector('.container');
+            const containerRect = container.getBoundingClientRect();
+            const buttonWidth = noBtn.offsetWidth;
+            const buttonHeight = noBtn.offsetHeight;
+            
+            // Define safe boundaries within the white card (with padding from edges)
+            const padding = 30; // Padding from container edges
+            const containerCenterX = containerRect.left + containerRect.width / 2;
+            
+            let randomX, randomY;
+            
+            // Alternate between right and left side
+            if (moveToRight) {
+                // Move to right side
+                const minX = containerCenterX + 20;
+                const maxX = containerRect.right - padding;
+                randomX = Math.random() * (maxX - minX) + minX;
+            } else {
+                // Move to left side
+                const minX = containerRect.left + padding;
+                const maxX = containerCenterX - 20;
+                randomX = Math.random() * (maxX - minX) + minX;
+            }
+            
+            // Random Y position within container
+            const minY = containerRect.top + padding;
+            const maxY = containerRect.bottom - padding;
+            randomY = Math.random() * (maxY - minY) + minY;
+            
+            // Toggle for next click
+            moveToRight = !moveToRight;
+            
+            // Update button position
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+            noBtn.style.transform = 'translate(-50%, -50%)';
+            
+            // Update reaction text
+            if (clickCount < reactions.length) {
+                reactionText.textContent = reactions[clickCount];
+                reactionText.style.animation = 'none';
+                setTimeout(() => {
+                    reactionText.style.animation = 'fadeInBounce 0.5s ease-out';
+                }, 10);
+            }
+            
+            // Grow the Yes button with each No click!
+            yesScale += 0.2; // Increase by 20% each time
+            yesBtn.style.transform = `scale(${yesScale})`;
+            yesBtn.style.transition = 'transform 0.3s ease';
+            
+            // Change Yes button text based on click count
+            const textIndex = Math.min(clickCount + 1, yesButtonTexts.length - 1);
+            yesBtn.innerHTML = yesButtonTexts[textIndex];
+            
+            // Add a little bounce animation when text changes
+            yesBtn.style.animation = 'pulse 0.5s ease';
+            
+            clickCount++;
+        }
+
+        // Move button on click
+        noBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            moveButton();
+        });
+
+        // Touch support for mobile
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            noBtn.click();
+        });
+
+        // Yes button action
+        function sayYes() {
+            document.getElementById('questionPage').style.display = 'none';
+            document.getElementById('celebrationPage').style.display = 'block';
+            
+            // Create confetti
+            createConfetti();
+            
+            // Change background to more romantic
+            document.body.style.background = 'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)';
+        }
+
+        // Create confetti effect
+        function createConfetti() {
+            const colors = ['#f5576c', '#f093fb', '#4facfe', '#43e97b', '#fa709a', '#fee140'];
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-10px';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    confetti.style.animationDelay = '0s';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
+        // Celebrate button action
+        function celebrate() {
+            // Redirect to celebration page
+            window.location.href = 'celebrate.html';
+        }
+    </script>
+</body>
+</html>
